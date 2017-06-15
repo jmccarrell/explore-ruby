@@ -27,7 +27,7 @@ def phone_word(phone, word, level)
   #  phone key pad.
   # then filter that set to only those we care about.
   if phone.length == 0
-    # print '>' * level, "eor: ", word, "\n"
+    # print '>' * level, word, "\n"
     if $good_words.include? word then
       puts word
     end
