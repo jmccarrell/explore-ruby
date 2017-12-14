@@ -24,13 +24,14 @@ $key_pad = { '0' => [],
 # then filter that set to only those we care about.
 def phone_word(phone, word, level)
   if phone.length.zero?
-    # print '>' * level, word, "\n"
-    puts word if ($good_words.include? word) && return
+    return word if ($good_words.include? word)
+    return
   end
+  print "#{phone} YZ #{word} XXY #{level}\n"
   digits = phone.split('')
   key = digits.shift
   remainder = digits.join('')
-  if $key_pad[key].!empty!
+  if $key_pad[key].empty?
     $key_pad[key].each { |w| phone_word(remainder, word + w, level + 1) }
   else
     # empty set of matching characters
@@ -42,5 +43,5 @@ def phone_to_word(phone)
   phone_word(phone, '', 0)
 end
 
-phone_boy_cox = ['2691', '2169', '2069']
-phone_boy_cox.each { |pb| phone_to_word(pb) }
+phone_boy_cox = ['8732', '2691', '2169', '2069']
+puts(phone_boy_cox.each { |pb| phone_to_word(pb) })
